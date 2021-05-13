@@ -1,0 +1,30 @@
+import sys
+import pygame
+from pygame.locals import QUIT
+
+pygame.init() #초기화 부분
+screen = pygame.display.set_mode((400, 300)) #화면 크기 설정
+pygame.display.set_caption("time window") # 창의 이름표
+
+WHITE = (255,255,255)
+BLACK = (0, 0, 0)
+
+def main():
+    systemFont = pygame.font.SysFont(None, 36) #사용할 폰트 
+    cnt = 0
+    while True:
+        screen.fill(BLACK)  #화면을 블랙 
+
+        for event in pygame.event.get():
+            if event.type == QUIT:  #종료 버튼 누를 시 종료 
+                pygame.quit()
+                sys.exit()
+
+        cnt +=1
+        cnt_img = systemFont.render(" count = " + format(cnt), True, (255, 255, 255))  # 숫자는 흰색, cnt 값을 render 해준다 
+        screen.blit(cnt_img, (50, 50))  #화면에 뿌려주는 기능 
+        pygame.display.update() # 화면이 변할때마다 update 
+
+
+if __name__ == '__main__':
+    main()

@@ -21,7 +21,7 @@ def main():
                 sys.exit()
 
         cnt +=1
-        cnt_img = systemFont.render(" count = " + format(cnt), True, (255, 255, 255))  # 숫자는 흰색, cnt 값을 render 해준다
+        cnt_img = systemFont.render(" count = {}".format(cnt), True, (255, 255, 255))  # 숫자는 흰색, cnt 값을 render 해준다
         screen.blit(cnt_img, (50, 50))  #화면에 뿌려주는 기능
         pygame.display.update() # 화면이 변할때마다 update
 

@@ -19,5 +19,7 @@ except ZeroDivisionError as err:
 except Exception as err:
     print("알 수 없는 에러가 발생했습니다.")
     print(err)
-
+finally:
+    print("계산기를 이용해 주셔서 감사합니다")
+    
     

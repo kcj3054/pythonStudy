@@ -1,20 +1,21 @@
 import sys
 from random import randint
-
+import pygame
+from pygame import QUIT, Rect, KEYDOWN, K_SPACE 
 
 pygame.init()
 #키설정
 
 VIEW = pygame.display.set_mode((800, 600))
-FPS = pygame.time.Clock()
+FPS = pygame.time.Clock()        # 
 
 
 def main():
-    blocks = 80
+    blocks = 80            # 동굴 직사각형  
     pos_y = 250
-    speed = 0
+    speed = 0   # == velocity 
     score = 0
-    grt = randint(1, 6)
+    grt = randint(1, 6)         # 동굴의 기울기 
     sysfont = pygame.font.SysFont(None, 36)
     char_image = pygame.image.load("car.PNG")
     maps[]  # 블럭 저장하기 위한 리스트 
@@ -33,18 +34,19 @@ def main():
                 if event.key == k_SPACE:
                     is_space_down = True
 
+
         if not end:
             score += 10
             speed += 3 if is_space_down else 3
             pos_y += speed
-
+#동굴의 이동
             edge = maps[-1].copy()
-            test = edge.move(0, grt)  #맵을 이동시킨다 , x축은 0, y축은 grt만큼 이동 
+            test = edge.move(0, grt)  #맵을 이동시킨다 , x축은 0, y축은 grt만큼 이동 , 천장에 닿이면 기울기 반전 시킬 의도 
 
-            if test.top <= 0 or test.bottom >= 600:  #맵을 생성하는 부분,   범위를 초과한 것 아닌가 ?  ? ??  ?  ,,, 600이라는 것은 바닥에 닿았다는 것이다
-                grt = randint(1, 6) * (-1 if grt > 0 else 1)
-                edge.inflate_ip(0, -20)  # inflate_ip 호출한 대상의 크기를 늘이거나 줄인다 (x, y)
-            edge.move_ip(10, grt)
+            if test.top <= 0 or test.bottom >= 600:  #맵을 생성하는 부분, 600이라는 것은 바닥에 닿았다는 것이다
+                grt = randint(1, 6) * (-1 if grt > 0 else 1)       # 기울기 부호 반전 
+                edge.inflate_ip(0, -20)  # inflate_ip 호출한 대상의 크기를 늘이거나 줄인다 (x, y), y축을 20만큼 작게한다, 동굴 점점 축소
+            edge.move_ip(10, grt)  # 직사각형의 가장 오른쪽끝이 들어가 있다 x만큼10, y는 grt만큼 이동
             maps.append(edge)
             del maps[0] #앞 map를 지우고 다시 생성, 지우는 부분 
             maps = [x.move(-10, 0) for x in maps]

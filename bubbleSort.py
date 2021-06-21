@@ -14,7 +14,7 @@ print(completeBubble)
 
 print("버블 정렬 수행")
 
-for i in range(_len - 1):
+for i in range(_len):   # range 마지막은 포함 x
     for j in range(_len - i - 1):
         if completeBubble[j] > completeBubble[j + 1]:
             tmp = completeBubble[j]
